@@ -12,6 +12,12 @@ class Murder(models.Model):
     link = models.URLField(null=True)
     synopsis = models.TextField()
 
+    def __unicode__(self):
+        return self.name
+
 class Instance(models.Model):
     murder = models.ForeignKey(Murder)
     date = models.DateTimeField()
+
+    def __unicode__(self):
+        return str(self.murder) + " " + self.date.strftime("%d/%m/%y")
