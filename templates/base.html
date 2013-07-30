@@ -13,8 +13,14 @@
         <nav id="navigation">
         <div class="container">
             <ul class="navlinks">
-                <li><a href="{% url 'catalog.views.homepage' %}">Murders</a></li>
-                <li><a href="/">Compte</a></li>
+                <li><a href="{% url 'catalog.views.homepage' %}">
+                    Murders</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/">{{ user }}</a></li>
+                {% else %}
+                <li><a href="{% url 'django.contrib.auth.views.login' %}">
+                    Compte</a></li>
+                {% endif %}
             </ul>
         </div>
         </nav>
