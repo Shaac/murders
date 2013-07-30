@@ -10,4 +10,5 @@ urlpatterns = patterns('',
         (r'^login$', 'django.contrib.auth.views.login',
             {'template_name': 'login.html'}),
         (r'^$', 'catalog.views.homepage'),
+        (r'^roles$', 'roles.views.played'),
 )
