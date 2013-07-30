@@ -1,4 +1,5 @@
 from django.db import models
+from unicodedata import normalize
 
 class Murder(models.Model):
     name = models.CharField(max_length=64)
@@ -13,7 +14,7 @@ class Murder(models.Model):
     synopsis = models.TextField()
 
     def __unicode__(self):
-        return self.name
+        return normalize("NFD", self.name).encode("ascii", "ignore")
 
 class Instance(models.Model):
     murder = models.ForeignKey(Murder)

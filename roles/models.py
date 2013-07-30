@@ -1,6 +1,7 @@
 from django.db import models
 from catalog.models import Murder, Instance
 from django.contrib.auth.models import User
+from unicodedata import normalize
 
 class Role(models.Model):
     murder = models.ForeignKey(Murder)
@@ -11,7 +12,7 @@ class Role(models.Model):
     optional = models.BooleanField()
 
     def __unicode__(self):
-        return self.name
+        return normalize("NFD", self.name).encode("ascii", "ignore")
 
 class Player(models.Model):
     role = models.ForeignKey(Role)
