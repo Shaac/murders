@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Murders</title>
+        <title>{{ murder.name }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>Murders</h1>
+        <h1>{{ murder.name }}</h1>
 
-        <ul>{% for content in murders %}
-            <li><a href="{% url 'catalog.views.murder' content.pk content.name|slugify %}">
-                {{ content.name }}</a></li>
-            {% empty %}
-            <li>Vide</li>
-            {% endfor %}
+        <ul>
+            <li>Auteur : {{ murder.author }}</li>
+            <li>Date : {{ murder.date }} </li>
         </ul>
+
+        <p>{{ murder.synopsis|linebreaksbr }}</p>
 
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
