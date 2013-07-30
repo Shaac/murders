@@ -1,6 +1,22 @@
-{% for content in murders %}
-    {{ content.name }}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Murders</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <h1>Murders</h1>
 
-    {% empty %}
-    Vide
-{% endfor %}
+        <ul>{% for content in murders %}
+            <li>{{ content.name }}</li>
+
+            {% empty %}
+            <li>Vide</li>
+            {% endfor %}
+        </ul>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/js/bootstrap.min.js"></script>
+    </body>
+</html>
