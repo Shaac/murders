@@ -6,7 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
         (r'^admin/', include(admin.site.urls)),
+        (r'^murder', include('catalog.urls')),
         (r'^$', 'catalog.views.homepage'),
-        (r'^murder-(?P<murder_id>\d+)$', 'catalog.views.murder'),
-        (r'^murder-(?P<murder_id>\d+)-([\w\-]*)$', 'catalog.views.murder'),
 )
