@@ -7,9 +7,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href=
         "//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/design.css">
     </head>
     <body>
+        <nav id="navigation">
+        <div class="container">
+            <ul class="navlinks">
+                <li><a href="{% url 'catalog.views.homepage' %}">Murders</a></li>
+                <li><a href="/">Compte</a></li>
+            </ul>
+        </div>
+        </nav>
+
+        <header id="heading">
+        <div class="container text-center">
+            <h1>Murder parties</h1>
+            <h4>Télécom LudoTech</h4>
+        </div>
+        </header>
         {% block content %}{% endblock %}
+
 
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src=
