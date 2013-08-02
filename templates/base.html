@@ -16,9 +16,10 @@
                 <li><a href="{% url 'catalog.views.homepage' %}">
                     Murders</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="/">{{ user }}</a></li>
+                <li><a href="{% url 'roles.views.my_played' %}">
+                    {{ user }}</a></li>
                 {% else %}
-                <li><a href="{% url 'roles.views.played' %}">
+                <li><a href="{% url 'roles.views.my_played' %}">
                     Compte</a></li>
                 {% endif %}
             </ul>

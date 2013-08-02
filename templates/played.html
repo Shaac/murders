@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Murders{% endblock %}
+
+{% block content %}
+<h1>{{ player.username }}</h1>
+
+<h2>Murders jouées</h2>
+
+<table>{% for murder in played %}
+    <tr>
+        <td><a href=
+                "{% url 'catalog.views.murder' murder.pk murder.name|slugify %}">
+                {{ murder.name }}</a>
+        </td>
+        <td>{% for role in roles %}{% if role.instance.murder.pk == murder.pk %}
+            {{ role.instance.date|date:"d/m/Y" }} : {{ role.role.name }}<br />
+            {% endif %}{% endfor%}
+        </td>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td>Vide</td></tr>
+    {% endfor %}
+</table>
+
+<h2>Murders non jouées</h2>
+
+<ul>{% for murder in others %}
+    <li><a
+        href="{% url 'catalog.views.murder' murder.pk murder.name|slugify %}">
+        {{ murder.name }}</a></li>
+    {% empty %}
+    <li>Vide</li>
+    {% endfor %}
+</ul>
+{% endblock %}

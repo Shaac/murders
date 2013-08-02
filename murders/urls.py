@@ -10,5 +10,6 @@ urlpatterns = patterns('',
         (r'^accounts/login/', 'django.contrib.auth.views.login',
             {'template_name': 'login.html'}),
         (r'^$', 'catalog.views.homepage'),
-        (r'^roles$', 'roles.views.played'),
+        (r'^roles$', 'roles.views.my_played'),
+        (r'^roles-(?P<user_id>\d+)$', 'roles.views.played'),
 )
