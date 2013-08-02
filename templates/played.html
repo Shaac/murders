@@ -14,7 +14,9 @@
                 {{ murder.name }}</a>
         </td>
         <td>{% for role in roles %}{% if role.instance.murder.pk == murder.pk %}
-            {{ role.instance.date|date:"d/m/Y" }} : {{ role.role.name }}<br />
+            {% if role.role.organizer %}<strong>{% endif %}
+                {{ role.instance.date|date:"d/m/Y" }} : {{ role.role.name }}
+            {% if role.role.organizer %}</strong>{% endif %}<br />
             {% endif %}{% endfor%}
         </td>
         </td>
