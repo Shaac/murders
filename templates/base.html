@@ -18,7 +18,7 @@
                 {% if user.is_authenticated %}
                 <li><a href="/">{{ user }}</a></li>
                 {% else %}
-                <li><a href="{% url 'django.contrib.auth.views.login' %}">
+                <li><a href="{% url 'roles.views.played' %}">
                     Compte</a></li>
                 {% endif %}
             </ul>
