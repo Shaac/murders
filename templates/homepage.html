@@ -3,13 +3,45 @@
 {% block title %}Murders{% endblock %}
 
 {% block content %}
-<h1>Murders</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Catalogue</h2>
 
-<ul>{% for content in murders %}
-    <li><a href="{% url 'catalog.views.murder' content.pk content.name|slugify %}">
-        {{ content.name }}</a></li>
-    {% empty %}
-    <li>Vide</li>
-    {% endfor %}
-</ul>
+            <ul>{% for m in murders %}
+                <li><a href=
+                    "{% url 'catalog.views.murder' m.pk m.name|slugify %}">
+                    {{ m.name }}</a></li>
+
+                {% empty %}
+                <li>Aucune murder.</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <h2>Récemment jouées</h2>
+
+            <ul>{% for i in recent %}
+                <li>{{ i.date|date:"d/m/Y" }} : <a href=
+                    "{% url 'catalog.views.murder' i.murder.pk i.murder.name|slugify %}">
+                    {{ i.murder.name }}</a></li>
+                {% empty %}
+                <li>Aucune murder jouée récemment.</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <h2>Prochainement</h2>
+ 
+            <ul>{% for i in next %}
+                <li>{{ i.date|date:"d/m/Y" }} : <a href=
+                    "{% url 'catalog.views.murder' i.murder.pk i.murder.name|slugify %}">
+                    {{ i.murder.name }}</a></li>
+                {% empty %}
+                <li>Aucune murder jouée récemment.</li>
+            {% endfor %}
+            </ul>
+       </div>
+    </div>
+</div>
 {% endblock %}
