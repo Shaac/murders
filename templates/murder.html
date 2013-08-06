@@ -45,14 +45,14 @@
         <div class="col-lg-8">
             <h2>Ont déjà joué</h2>
 
-            <ul>
+            <p>
                 {% for p in players %}
-                <li><a href="{% url 'roles.views.played' p.pk %}">
-                    {{ p.username }}</a></li>
+                <a href="{% url 'roles.views.played' p.pk %}">
+                    {{ p.username }}</a>,
                 {% empty %}
-                <li>Personne n'a encore joué à cette murder.</li>
+                Personne n'a encore joué à cette murder.
                 {% endfor%}
-            </ul>
+            </p>
         </div>
     </div>
 </div>
