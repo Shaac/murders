@@ -3,12 +3,57 @@
 {% block title %}{{ murder.name }}{% endblock %}
 
 {% block content %}
-<h1>{{ murder.name }}</h1>
 
-<ul>
-    <li>Auteur : {{ murder.author }}</li>
-    <li>Date : {{ murder.date }} </li>
-</ul>
+<div class="container">
+    <h1>{{ murder.name }}</h1>
 
-<p>{{ murder.synopsis|linebreaksbr }}</p>
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Infos</h2>
+
+            <ul>
+                <li>Auteur : {{ murder.author }}</li>
+                <li>Date : {{ murder.date }} </li>
+                <li>Joueurs : {{ murder.min_players}}
+                {% if murder.min_players != murder.max_players %} -
+                {{ murder.max_players }}{% endif %}</li>
+                <li>Organisateur{{ murder.organizers|pluralize }} :
+                {{ murder.organizers }}</li>
+                <li>Points d'actions :
+                {{ murder.action_points|yesno:"Oui,Non" }}</li>
+                <li>Lien : {{ murder.link|urlizetrunc:30 }}</li>
+            </ul>
+        </div>
+        <div class="col-lg-8">
+            <h2>Synopsis</h2>
+
+            <p>{{ murder.synopsis|linebreaksbr }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <h2>Instances</h2>
+
+            <ul>
+                {% for i in instances %}
+                <li>{{ i.date|date:"d/m/Y" }}</li>
+                {% empty %}
+                <li>Cette murder n'a pas encore été jouée.</li>
+                {% endfor%}
+            </ul>
+        </div>
+        <div class="col-lg-8">
+            <h2>Ont déjà joué</h2>
+
+            <ul>
+                {% for p in players %}
+                <li><a href="{% url 'roles.views.played' p.pk %}">
+                    {{ p.username }}</a></li>
+                {% empty %}
+                <li>Personne n'a encore joué à cette murder.</li>
+                {% endfor%}
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}
